@@ -1,5 +1,4 @@
 const { Puntuaciones } = require("../models/puntuaciones.model");
-const { get } = require("../routes/puntuaciones.routes");
 
 const controller = {};
 

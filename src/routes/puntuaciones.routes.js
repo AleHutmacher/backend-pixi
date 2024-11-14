@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const route = Router();
-const middleware = require("../middlewares/auth.middleware");
+const middleware = require("../middlewares/puntuaciones.middleware");
 const puntuacionesController = require("../controllers/puntuaciones.controller");
 
 route.get(
