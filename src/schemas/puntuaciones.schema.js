@@ -9,7 +9,7 @@ const schema = Joi.object({
     .trim()
     .token()
     .pattern(/^\S+$/),
-  puntuacion: Joi.number().required().trim(),
+  puntuacion: Joi.number().required(),
 });
 
 module.exports = schema;

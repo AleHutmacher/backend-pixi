@@ -1,9 +1,8 @@
-const { Puntuaciones } = require("../models/puntuaciones.model");
 const schema = require("../schemas/puntuaciones.schema");
 
 const middleware = {};
 
-middleware.validatePuntuaciones = async (req, res, next) => {
+const validatePuntuaciones = async (req, res, next) => {
   try {
     const { error } = schema.validate(req.body);
     if (error) {
@@ -15,7 +14,5 @@ middleware.validatePuntuaciones = async (req, res, next) => {
   }
 };
 middleware.validatePuntuaciones = validatePuntuaciones;
-
-
 
 module.exports = middleware;

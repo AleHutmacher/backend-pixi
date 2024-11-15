@@ -1,25 +1,51 @@
-const { Puntuaciones } = require("../models/puntuaciones.model");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 const controller = {};
 
-controller.getPuntuaciones = async (req, res) => {
-  const puntuaciones = await Puntuaciones.findAll();
-  res.json(puntuaciones);
+const getPuntuaciones = async (req, res) => {
+  try {
+    const puntuaciones = await prisma.puntuaciones.findMany();
+    res.json(puntuaciones);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al obtener las puntuaciones" });
+  }
 };
 controller.getPuntuaciones = getPuntuaciones;
 
-controller.getTopPuntuaciones = async (req, res) => {
-  const puntuaciones = await Puntuaciones.findAll({
-    order: [["puntuacion", "DESC"]],
-    limit: 5,
-  });
-  res.json(puntuaciones);
+const getTopPuntuaciones = async (req, res) => {
+  try {
+    const puntuaciones = await prisma.puntuaciones.findMany({
+      orderBy: {
+        puntuacion: "desc",
+      },
+      take: 5,
+    });
+    res.json(puntuaciones);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "Error al obtener las mejores puntuaciones" });
+  }
 };
 controller.getTopPuntuaciones = getTopPuntuaciones;
 
-controller.createPuntuaciones = async (req, res) => {
-  const puntuaciones = await Puntuaciones.create(req.body);
-  res.json(puntuaciones);
+const createPuntuaciones = async (req, res) => {
+  try {
+    const { nombre, puntuacion } = req.body;
+    const nuevaPuntuacion = await prisma.puntuaciones.create({
+      data: {
+        nombre,
+        puntuacion,
+      },
+    });
+    res.status(201).json(nuevaPuntuacion);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al crear la puntuación" });
+  }
 };
 controller.createPuntuaciones = createPuntuaciones;
 
