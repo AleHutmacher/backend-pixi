@@ -11,6 +11,9 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 app.use(express.json());
+
+
+
 app.use(routes);
 
 async function startDatabase() {
