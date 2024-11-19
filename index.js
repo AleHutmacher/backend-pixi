@@ -10,9 +10,11 @@ const initGlobalApiKey = require("./src/config/apikey");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+const cors = require("cors");
+
+app.use(cors());
+
 app.use(express.json());
-
-
 
 app.use(routes);
 
