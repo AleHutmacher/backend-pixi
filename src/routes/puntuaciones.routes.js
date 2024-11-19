@@ -6,19 +6,19 @@ const puntuacionesController = require("../controllers/puntuaciones.controller")
 
 route.get(
   "/all-puntuaciones",
-  verificarApiKey,
+  //verificarApiKey,
   puntuacionesController.getPuntuaciones
 );
 
 route.get(
   "/top-puntuaciones",
-  verificarApiKey,
+  //verificarApiKey,
   puntuacionesController.getTopPuntuaciones
 );
 
 route.post(
   "/all-puntuaciones",
-  verificarApiKey,
+  //verificarApiKey,
   middleware.validatePuntuaciones,
   puntuacionesController.createPuntuaciones
 );
