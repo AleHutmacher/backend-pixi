@@ -25,8 +25,6 @@ Copiá `.env.example` a `.env` y completá los valores. En Vercel, configurá la
 | `API_KEY` | Clave que valida los endpoints internos (header `x-api-key`). |
 | `BACKEND_URL` | URL pública del propio backend en Vercel (ej. `https://backend-pixi.vercel.app`). La usa el proxy para reenviar. |
 | `CORS_ORIGIN` | Origen del frontend permitido por CORS (ej. `https://tu-usuario.github.io`). |
-| `UPSTASH_REDIS_REST_URL` | URL REST de Upstash Redis para el rate limiting (opcional). |
-| `UPSTASH_REDIS_REST_TOKEN` | Token REST de Upstash Redis para el rate limiting (opcional). |
 | `PORT` | Puerto local (Vercel lo asigna en producción). |
 | `POSTGRES_PRISMA_URL` | URL de conexión a PostgreSQL (con pooling). |
 | `POSTGRES_URL_NON_POOLING` | URL de conexión directa (para migraciones). |
@@ -56,15 +54,6 @@ Pasan por el proxy, que internamente llama a los endpoints internos con la `API_
 | `GET` | `/all-puntuaciones` |
 | `GET` | `/top-puntuaciones` |
 | `POST` | `/all-puntuaciones` |
-
-## Rate limiting
-
-El proxy limita las peticiones por IP usando Upstash Redis (30 por minuto por IP). Es opcional: si no configurás `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN`, el proxy funciona igual pero sin límite.
-
-Para activarlo:
-
-1. Creá una base Redis gratis en [Upstash](https://upstash.com) (o usá la integración de Vercel).
-2. Copiá `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN` a las variables de entorno.
 
 ## Scripts
 
