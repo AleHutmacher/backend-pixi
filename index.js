@@ -4,11 +4,7 @@ const express = require("express");
 const app = express();
 
 const routes = require("./src/routes/puntuaciones.routes");
-
-const initGlobalApiKey = require("./src/config/apikey");
-
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("./src/config/database");
 
 const cors = require("cors");
 
@@ -30,7 +26,6 @@ async function startDatabase() {
 }
 
 startDatabase();
-initGlobalApiKey();
 
 app.listen(process.env.PORT, () => {
   console.log(`Servidor escuchando en puerto ${process.env.PORT}`);

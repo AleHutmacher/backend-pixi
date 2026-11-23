@@ -1,20 +1,6 @@
-require("dotenv").config();
-const { Sequelize } = require("sequelize");
+const { PrismaClient } = require("@prisma/client");
 
-console.log("POSTGRES_DIALECT:", process.env.POSTGRES_DIALECT); // Verifica si se carga correctamente
+// Instancia única de PrismaClient compartida por toda la aplicación.
+const prisma = new PrismaClient();
 
-const sequelize = new Sequelize({
-  database: process.env.POSTGRES_DATABASE,
-  username: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  host: process.env.POSTGRES_HOST,
-  dialect: String(process.env.POSTGRES_DIALECT), // Asegúrate de que el dialecto esté especificado como un string
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-});
-
-module.exports = sequelize;
+module.exports = prisma;
