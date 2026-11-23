@@ -13,7 +13,7 @@ API REST para gestionar puntuaciones de un juego (estilo "top scores").
 
 El backend expone dos capas:
 
-1. **Proxy público** (`/api/*`) — Vercel Functions que consume el frontend (GitHub Pages). Guarda la `API_KEY` del lado del servidor, habilita CORS para el origen del front y reenvía la petición a los endpoints internos.
+1. **Proxy público** (`/api/*`) — Vercel Functions que consume el frontend. Guarda la `API_KEY` del lado del servidor, habilita CORS abierto (`*`) y reenvía la petición a los endpoints internos.
 2. **API interna** (`/all-puntuaciones`, `/top-puntuaciones`) — rutas de Express protegidas con `x-api-key`. No las consume el navegador directamente.
 
 ## Variables de entorno
@@ -24,7 +24,6 @@ Copiá `.env.example` a `.env` y completá los valores. En Vercel, configurá la
 |----------|-------------|
 | `API_KEY` | Clave que valida los endpoints internos (header `x-api-key`). |
 | `BACKEND_URL` | URL pública del propio backend en Vercel (ej. `https://backend-pixi.vercel.app`). La usa el proxy para reenviar. |
-| `CORS_ORIGIN` | Origen del frontend permitido por CORS (ej. `https://tu-usuario.github.io`). |
 | `PORT` | Puerto local (Vercel lo asigna en producción). |
 | `POSTGRES_PRISMA_URL` | URL de conexión a PostgreSQL (con pooling). |
 | `POSTGRES_URL_NON_POOLING` | URL de conexión directa (para migraciones). |

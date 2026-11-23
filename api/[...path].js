@@ -1,13 +1,9 @@
 module.exports = async function handler(req, res) {
   const BACKEND_URL = process.env.BACKEND_URL;
   const API_KEY = process.env.API_KEY;
-  const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
-  // CORS hacia el front (GitHub Pages)
-  if (CORS_ORIGIN) {
-    res.setHeader("Access-Control-Allow-Origin", CORS_ORIGIN);
-    res.setHeader("Vary", "Origin");
-  }
+  // CORS abierto: la API no usa credenciales y la clave va oculta del lado del servidor.
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
