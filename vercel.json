@@ -15,8 +15,12 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "^/api/top-puntuaciones/?$",
+      "dest": "/api/top-puntuaciones"
+    },
+    {
+      "src": "^/api/all-puntuaciones/?$",
+      "dest": "/api/all-puntuaciones"
     },
     {
       "src": "/(.*)",
