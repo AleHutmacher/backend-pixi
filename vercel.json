@@ -7,21 +7,9 @@
       "config": {
         "cache": false
       }
-    },
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
-    {
-      "src": "^/api/top-puntuaciones/?$",
-      "dest": "/api/top-puntuaciones"
-    },
-    {
-      "src": "^/api/all-puntuaciones/?$",
-      "dest": "/api/all-puntuaciones"
-    },
     {
       "src": "/(.*)",
       "dest": "/index.js"

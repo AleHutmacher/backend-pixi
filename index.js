@@ -5,12 +5,27 @@ const app = express();
 
 const routes = require("./src/routes/puntuaciones.routes");
 const prisma = require("./src/config/database");
+const createProxyHandler = require("./src/proxy-handler");
 
 const cors = require("cors");
 
 app.use(cors());
 
 app.use(express.json());
+
+// Proxy público: agrega la API key del lado servidor y reenvía al endpoint interno.
+app.get(
+  "/api/top-puntuaciones",
+  createProxyHandler("top-puntuaciones", "GET")
+);
+app.get(
+  "/api/all-puntuaciones",
+  createProxyHandler("all-puntuaciones", "GET")
+);
+app.post(
+  "/api/all-puntuaciones",
+  createProxyHandler("all-puntuaciones", "GET, POST")
+);
 
 app.use(routes);
 
